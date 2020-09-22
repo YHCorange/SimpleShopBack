@@ -331,7 +331,6 @@
 				_this.title = '新增商品'
 				_this.doType = 'add'
 				_this.editModal = true
-				console.log(_this.doType)
 			},
 
 			// 显示编辑框

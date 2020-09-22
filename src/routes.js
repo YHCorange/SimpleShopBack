@@ -62,6 +62,11 @@ export default new Router({
 					path: '/contact',
 					component: () => import('./views/systemManage/contact.vue'),
 					name: '联系方式'
+				},
+				{
+					path: '/notice',
+					component: () => import('./views/systemManage/notice.vue'),
+					name: '系统公告'
 				}
 			]
 		},

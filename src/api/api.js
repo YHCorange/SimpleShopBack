@@ -29,3 +29,6 @@ export const goodsState = (params) => post('/api/ProductManage/Upanddown', param
 export const bannerList = (params) => get('/api/Rotation/GetRotationList', params) //轮播图列表
 export const bannerAdd = (params) => postForm('/api/Rotation/Add', params) //轮播图新增
 export const bannerEdit = (params) => postForm('/api/Rotation/UpdateRotation', params) //轮播图修改
+
+export const noticeView = (params) => get('/api/Notice/GetNotice', params) //系统公告获取
+export const noticeEdit = (params) => post('/api/Notice/UpdateNotice', params) //系统公告修改
