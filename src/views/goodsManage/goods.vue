@@ -348,8 +348,13 @@
 				_this.editForm.description = row.ProductDescribe
 
 				//图片转换为 url:'xxx' 格式才能回显
-				if (row.ProductUrl && row.Url) {
-					let img = row.ProductUrl + ',' + row.Url
+				let img = ''
+				if (row.ProductUrl) {
+					if (row.Url) {
+						img = row.ProductUrl + ',' + row.Url
+					} else {
+						img = row.ProductUrl
+					}
 					let imgArr = img.split(',')
 					let formatImgArr = []
 					for (let x in imgArr) {
