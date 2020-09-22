@@ -3,7 +3,7 @@
 		<el-row class="home-container">
 			<el-col :span="24" class="header">
 				<el-col :span="10" class="logo" :class="collapsed?'logo-collapse-width':'logo-width'">
-					<span @click="$router.push('/index')" style="cursor: pointer;"><i class="el-icon-s-opportunity"></i>
+					<span @click="$router.push('/goods')" style="cursor: pointer;"><i class="el-icon-s-opportunity"></i>
 						{{collapsed?'':sysName}}</span>
 				</el-col>
 				<el-col :span="10">
