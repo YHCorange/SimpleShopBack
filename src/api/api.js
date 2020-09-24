@@ -18,7 +18,8 @@ export const typeList = (params) => get('/api/ProductType/GetProductTypeList', p
 export const typeAdd = (params) => post('/api/ProductType/AddProductType', params) //商品分类新增
 export const typeEdit = (params) => post('/api/ProductType/UpdateProductType', params) //商品分类修改
 
-export const contactView = (params) => get('/api/CustomerService/GetCustomerService', params) //联系方式获取
+export const contactList = (params) => get('/api/CustomerService/GetCustomerService', params) //联系方式列表
+export const contactAdd = (params) => post('/api/CustomerService/AddCustomerService', params) //联系方式新增
 export const contactEdit = (params) => post('/api/CustomerService/UpdateCustomerService', params) //联系方式修改
 
 export const goodsList = (params) => get('/api/ProductManage/GetProductManageList', params) //商品列表
@@ -30,5 +31,6 @@ export const bannerList = (params) => get('/api/Rotation/GetRotationList', param
 export const bannerAdd = (params) => postForm('/api/Rotation/Add', params) //轮播图新增
 export const bannerEdit = (params) => postForm('/api/Rotation/UpdateRotation', params) //轮播图修改
 
-export const noticeView = (params) => get('/api/Notice/GetNotice', params) //系统公告获取
+export const noticeList = (params) => get('/api/Notice/GetNotice', params) //系统公告列表
+export const noticeAdd = (params) => post('/api/Notice/AddNotice', params) //系统公告新增
 export const noticeEdit = (params) => post('/api/Notice/UpdateNotice', params) //系统公告修改
