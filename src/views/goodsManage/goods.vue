@@ -3,8 +3,8 @@
 		<!--工具条-->
 		<el-col :span="24" class="toolbar" style="padding-bottom: 0px;">
 			<el-form :inline="true" :model="searchForm">
-				<el-form-item label="商品名称">
-					<el-input size="small" v-model="searchForm.name" placeholder="请输入商品名称"></el-input>
+				<el-form-item label="商品搜索">
+					<el-input size="small" v-model="searchForm.name" placeholder="请输入商品名称 / ASIN"></el-input>
 				</el-form-item>
 				<el-form-item label="所属国家">
 					<el-select v-model="searchForm.country" placeholder="请选择所属国家" size="small">
@@ -39,12 +39,13 @@
 		 id="tableData" ref='tableData'>
 			<el-table-column type="selection" align="center"></el-table-column>
 			<el-table-column type="index" label="#" align="center"></el-table-column>
-			<el-table-column prop="ProductName" label="商品名称" align="center" :show-overflow-tooltip='true'></el-table-column>
 			<el-table-column prop="picture" label="商品图" align="center">
 				<template slot-scope="scope">
 					<img style="width: 40px;height: 40px;" v-if="scope.row.ProductUrl" :src="scope.row.ProductUrl" @click.stop="showImage(scope.row.ProductUrl)" />
 				</template>
 			</el-table-column>
+			<el-table-column prop="ProductName" label="商品名称" align="center" :show-overflow-tooltip='true'></el-table-column>
+			<el-table-column prop="ASIN" label="ASIN" align="center"></el-table-column>
 			<el-table-column prop="CountryName" label="所属国家" align="center"></el-table-column>
 			<el-table-column prop="Name" label="商品类别" align="center"></el-table-column>
 			<el-table-column prop="Price" label="价格" align="center">
@@ -97,13 +98,17 @@
 					</el-col>
 				</el-row>
 				<el-row>
-					<el-col :span="18">
+					<el-col :span="24">
 						<el-form-item label="商品名称" prop="name">
 							<el-input v-model="editForm.name"></el-input>
 						</el-form-item>
 					</el-col>
-				</el-row>
-				<el-row>
+					<el-col :span="6">
+						<el-form-item label="ASIN" prop="asin">
+							<el-input v-model="editForm.asin">
+							</el-input>
+						</el-form-item>
+					</el-col>
 					<el-col :span="6">
 						<el-form-item label="所属国家" prop="country">
 							<el-select v-model="editForm.country" placeholder="请选择所属国家" class="w100" @change="getCurrency">
@@ -197,6 +202,7 @@
 				},
 				editForm: {
 					name: '',
+					asin: '',
 					country: '',
 					type: '',
 					price: '',
@@ -217,6 +223,11 @@
 					name: {
 						required: true,
 						message: '请输入商品名称',
+						trigger: 'blur'
+					},
+					asin: {
+						required: true,
+						message: '请输入商品ASIN',
 						trigger: 'blur'
 					},
 					country: {
@@ -341,6 +352,7 @@
 				_this.selectId = row.Id
 				_this.editModal = true
 				_this.editForm.name = row.ProductName
+				_this.editForm.asin = row.ASIN
 				_this.editForm.country = Number(row.CountryId)
 				_this.editForm.type = Number(row.ProductTypeId)
 				_this.editForm.price = row.Price
@@ -377,6 +389,7 @@
 				_this.$refs['editForm'].resetFields()
 				_this.editForm = {
 					name: '',
+					asin: '',
 					country: '',
 					type: '',
 					price: '',
@@ -415,6 +428,7 @@
 						//创建formData 用formData形式传参
 						let params = new FormData();
 						params.append('ProductName', _this.editForm.name)
+						params.append('ASIN', _this.editForm.asin)
 						params.append('CountryId', _this.editForm.country)
 						params.append('ProductTypeId', _this.editForm.type)
 						params.append('Price', _this.editForm.price)
@@ -445,6 +459,7 @@
 						let params = new FormData();
 						params.append('Id', _this.selectId)
 						params.append('ProductName', _this.editForm.name)
+						params.append('ASIN', _this.editForm.asin)
 						params.append('CountryId', _this.editForm.country)
 						params.append('ProductTypeId', _this.editForm.type)
 						params.append('Price', _this.editForm.price)
