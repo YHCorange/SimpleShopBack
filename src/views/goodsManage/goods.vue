@@ -70,7 +70,8 @@
 		<!--工具条-->
 		<el-col :span="24" class="toolbar">
 			<el-button size="small" type="success" @click="handleState(1)" :disabled="selsData.length<1">上架</el-button>
-			<el-button size="small" type="danger" @click="handleState(-1)" :disabled="selsData.length<1">下架</el-button>
+			<el-button size="small" type="warning" @click="handleState(-1)" :disabled="selsData.length<1">下架</el-button>
+			<el-button size="small" type="danger" @click="handleDelete()" :disabled="selsData.length<1">删除</el-button>
 			<el-pagination style="float: right;" @size-change="handleSizeChange" @current-change="handleCurrentChange"
 			 :current-page="pageIndex" :page-sizes="[10, 20, 50, 100,1000]" :page-size="10" layout="total, sizes, prev, pager, next, jumper"
 			 :total="total">
@@ -163,6 +164,7 @@
 		goodsAdd,
 		goodsEdit,
 		goodsState,
+		goodsDelete,
 		countryList,
 		typeList
 	} from '@/api/api'
@@ -499,6 +501,23 @@
 						State: val
 					}
 					goodsState(params).then((res) => {
+						_this.getData()
+					})
+				}).catch(() => {})
+			},
+
+			//商品删除
+			handleDelete() {
+				let _this = this
+				let ids = _this.selsData.map(item => item.Id) //选中的数据
+				let num = _this.selsData.length //选中的数量
+				_this.$confirm('确认【 删除 】选中的【' + num + '】个商品吗？', '信息提示', {
+					type: 'warning'
+				}).then(() => {
+					let params = {
+						Id: ids
+					}
+					goodsDelete(params).then((res) => {
 						_this.getData()
 					})
 				}).catch(() => {})

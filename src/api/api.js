@@ -26,6 +26,7 @@ export const goodsList = (params) => get('/api/ProductManage/GetProductManageLis
 export const goodsAdd = (params) => postForm('/api/ProductManage/Add', params) //商品新增
 export const goodsEdit = (params) => postForm('/api/ProductManage/UpdateProductManage', params) //商品修改
 export const goodsState = (params) => post('/api/ProductManage/Upanddown', params) //商品上架下架
+export const goodsDelete = (params) => post('/api/ProductManage/DeleteProductManage', params) //商品删除
 
 export const bannerList = (params) => get('/api/Rotation/GetRotationList', params) //轮播图列表
 export const bannerAdd = (params) => postForm('/api/Rotation/Add', params) //轮播图新增

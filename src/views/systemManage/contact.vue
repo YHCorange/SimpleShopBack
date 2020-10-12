@@ -21,8 +21,12 @@
 		<el-table border :data="tableData" @selection-change="selsChange" v-loading="listLoading" style="width: 100%" id="tableData"
 		 ref='tableData'>
 			<el-table-column type="index" label="#" align="center"></el-table-column>
-			<el-table-column prop="CountryName" label="国家" align="center"></el-table-column>
-			<el-table-column prop="Contact" label="联系方式" align="center" :show-overflow-tooltip='true'></el-table-column>
+			<el-table-column prop="CountryName" label="国家" align="center" width="200"></el-table-column>
+			<el-table-column prop="Contact" label="联系方式" align="center" :show-overflow-tooltip='true'>
+				<template v-slot="scope">
+					<div v-html="scope.row.Contact"></div>
+				</template>
+			</el-table-column>
 			<el-table-column label="操作" align="center" width="100">
 				<template v-slot="scope">
 					<el-button size="small" type="primary" @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
